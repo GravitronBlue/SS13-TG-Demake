@@ -15,8 +15,8 @@
 	ranged = TRUE
 	var/lastfired = 0
 	var/shot_delay = 15
-	var/shoot_sound = 'sound/weapons/laser.ogg'
-	var/projectile = /obj/item/projectile/beam/disabler
+	var/shoot_sound = 'sound/weapons/taser.ogg'
+	var/projectile = /obj/item/projectile/energy/electrode
 	var/fair_market_projectile = /obj/item/projectile/bullet/c38 // For shooting the worst scumbags of all: the poor
 	do_footstep = TRUE
 

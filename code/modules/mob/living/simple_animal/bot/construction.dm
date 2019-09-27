@@ -136,7 +136,7 @@
 						build_step++
 
 		if(7)
-			if(istype(W, /obj/item/gun/energy/disabler))
+			if(!istype(W, /obj/item/gun/energy/e_gun/advtaser))
 				if(!user.temporarilyRemoveItemFromInventory(W))
 					return
 				name = "[W.name] ED-209 assembly"
