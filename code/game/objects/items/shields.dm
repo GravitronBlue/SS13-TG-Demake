@@ -23,8 +23,7 @@
 	materials = list(/datum/material/glass=7500, /datum/material/iron=1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
-	transparent = TRUE
-	max_integrity = 75
+	transparent = FALSE
 
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(transparent && (hitby.pass_flags & PASSGLASS))
@@ -43,41 +42,8 @@
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, TRUE)
 			cooldown = world.time
-	else if(istype(W, /obj/item/stack/sheet/mineral/titanium))
-		if (obj_integrity >= max_integrity)
-			to_chat(user, "<span class='notice'>[src] is already in perfect condition.</span>")
-		else
-			var/obj/item/stack/sheet/mineral/titanium/T = W
-			T.use(1)
-			obj_integrity = max_integrity
-			to_chat(user, "<span class='notice'>You repair [src] with [T].</span>")
 	else
 		return ..()
-
-/obj/item/shield/riot/examine(mob/user)
-	. = ..()
-	var/healthpercent = round((obj_integrity/max_integrity) * 100, 1)
-	switch(healthpercent)
-		if(50 to 99)
-			. += "<span class='info'>It looks slightly damaged.</span>"
-		if(25 to 50)
-			. += "<span class='info'>It appears heavily damaged.</span>"
-		if(0 to 25)
-			. += "<span class='warning'>It's falling apart!</span>"
-
-/obj/item/shield/riot/proc/shatter(mob/living/carbon/human/owner)
-	playsound(owner, 'sound/effects/glassbr3.ogg', 100)
-	new /obj/item/shard((get_turf(src)))
-
-/obj/item/shield/riot/on_shield_block(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", damage = 0, attack_type = MELEE_ATTACK)
-	if (obj_integrity <= damage)
-		var/turf/T = get_turf(owner)
-		T.visible_message("<span class='warning'>[hitby] destroys [src]!</span>")
-		shatter(owner)
-		qdel(src)
-		return FALSE
-	take_damage(damage)
-	return ..()
 
 /obj/item/shield/riot/roman
 	name = "\improper Roman shield"
@@ -88,17 +54,11 @@
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	transparent = FALSE
 	materials = list(/datum/material/iron=8500)
-	max_integrity = 65
 
 /obj/item/shield/riot/roman/fake
 	desc = "Bears an inscription on the inside: <i>\"Romanes venio domus\"</i>. It appears to be a bit flimsy."
 	block_chance = 0
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	max_integrity = 30
-
-/obj/item/shield/riot/roman/shatter(mob/living/carbon/human/owner)
-	playsound(owner, 'sound/effects/grillehit.ogg', 100)
-	new /obj/item/stack/sheet/metal(get_turf(src))
 
 /obj/item/shield/riot/buckler
 	name = "wooden buckler"
@@ -111,12 +71,7 @@
 	resistance_flags = FLAMMABLE
 	block_chance = 30
 	transparent = FALSE
-	max_integrity = 55
 	w_class = WEIGHT_CLASS_NORMAL
-
-/obj/item/shield/riot/buckler/shatter(mob/living/carbon/human/owner)
-	playsound(owner, 'sound/effects/bang.ogg', 50)
-	new /obj/item/stack/sheet/mineral/wood(get_turf(src))
 
 /obj/item/shield/riot/flash
 	name = "strobe shield"
