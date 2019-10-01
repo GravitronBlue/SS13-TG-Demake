@@ -132,6 +132,8 @@
 	..()
 
 /obj/structure/frame/computer/AltClick(mob/user)
+	return
+	/*
 	..()
 	if(!isliving(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
@@ -141,3 +143,4 @@
 		return
 
 	setDir(turn(dir, -90))
+	*/

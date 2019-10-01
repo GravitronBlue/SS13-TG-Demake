@@ -2,7 +2,7 @@
 /obj/structure/guncase
 	name = "gun locker"
 	desc = "A locker that holds guns."
-	icon = 'icons/obj/closet.dmi'
+	icon = 'icons/oldschool/oldericons/closet_old.dmi'
 	icon_state = "shotguncase"
 	anchored = FALSE
 	density = TRUE
