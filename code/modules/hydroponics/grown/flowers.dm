@@ -15,7 +15,7 @@
 	icon_grow = "poppy-grow"
 	icon_dead = "poppy-dead"
 	mutatelist = list(/obj/item/seeds/poppy/geranium, /obj/item/seeds/poppy/lily)
-	reagents_add = list(/datum/reagent/medicine/C2/libital = 0.2, /datum/reagent/consumable/nutriment = 0.05)
+	reagents_add = list(/datum/reagent/medicine/bicaridine = 0.2, /datum/reagent/consumable/nutriment = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/poppy
 	seed = /obj/item/seeds/poppy
@@ -66,14 +66,14 @@
 	icon_grow = "spacemanstrumpet-grow"
 	icon_dead = "spacemanstrumpet-dead"
 	mutatelist = list()
-	genes = list(/datum/plant_gene/reagent/polypyr)
+//	genes = list(/datum/plant_gene/reagent/polypyr)
 	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05)
 	rarity = 30
-
+/*
 /obj/item/seeds/poppy/lily/trumpet/Initialize()
 	..()
 	unset_mutability(/datum/plant_gene/reagent/polypyr, PLANT_GENE_EXTRACTABLE)
-
+*/
 /obj/item/reagent_containers/food/snacks/grown/trumpet
 	seed = /obj/item/seeds/poppy/lily/trumpet
 	name = "spaceman's trumpet"

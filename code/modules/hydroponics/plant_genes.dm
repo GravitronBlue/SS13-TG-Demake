@@ -150,12 +150,12 @@
 		if(R.reagent_id == reagent_id)
 			return FALSE
 	return TRUE
-
+/*
 /datum/plant_gene/reagent/polypyr
 	name = "Polypyrylium Oligomers"
 	reagent_id = /datum/reagent/medicine/polypyr
 	rate = 0.15
-
+*/
 /datum/plant_gene/reagent/liquidelectricity
 	name = "Liquid Electricity"
 	reagent_id = /datum/reagent/consumable/liquidelectricity
