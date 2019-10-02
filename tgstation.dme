@@ -1165,6 +1165,8 @@
 #include "code\game\turfs\space\space.dm"
 #include "code\game\turfs\space\transit.dm"
 #include "code\modules\_toolbox\toolbox_initializations.dm"
+#include "code\modules\_toolbox\true_assistant.dm"
+#include "code\modules\_toolbox\true_assistant_upgrades.dm"
 #include "code\modules\admin\admin.dm"
 #include "code\modules\admin\admin_investigate.dm"
 #include "code\modules\admin\admin_ranks.dm"
