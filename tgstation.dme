@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
+#include "_maps\runtimestation.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -1164,6 +1165,7 @@
 #include "code\game\turfs\simulated\wall\reinf_walls.dm"
 #include "code\game\turfs\space\space.dm"
 #include "code\game\turfs\space\transit.dm"
+#include "code\modules\_toolbox\fal_new_player_cam.dm"
 #include "code\modules\_toolbox\toolbox_initializations.dm"
 #include "code\modules\_toolbox\true_assistant.dm"
 #include "code\modules\_toolbox\true_assistant_upgrades.dm"

@@ -193,6 +193,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
+	Initialize_Falaskians_Shit() //TOOLBOX initializations, find this proc in code/_toolbox/admin.dm. Add any other toolbox initializations here. -falaskian
+
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
 	to_chat(world, "<span class='boldannounce'>[msg]</span>")
 	log_world(msg)
