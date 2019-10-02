@@ -1,4 +1,7 @@
 // Degeneral's Makeshift armor
+
+// broken
+/*
 /obj/item/clothing/suit/armor/makeshift
 	name = "makeshift armor"
 	desc = "A makeshift armor that provides decent protection against most types of damage."
@@ -9,9 +12,11 @@
 	blood_overlay_type = "armor"
 	max_integrity = 200
 	armor = list(melee = 25, bullet = 25, laser = 25, energy = 10, bomb = 20, bio = 0, rad = 0, fire = 40, acid = 40)
-
+*/
 //stealth hypo
 
+// broken
+/*
 /obj/item/reagent_containers/hypospray/stealthinjector
 	name = "one use injector"
 	desc = null
@@ -70,7 +75,7 @@
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]0"
-
+*/
 // Rollie Cannabis
 
 /obj/item/clothing/mask/cigarette/rollie/cannabis
@@ -88,7 +93,7 @@
 
 
 // N-word pass
-
+/*
 /obj/item/nwordpass
 	name = "N-word pass"
 	desc = "Official pass to say the N-word."
@@ -122,7 +127,7 @@
 			if(success)
 				to_chat(H, "<span class='notice'>Now you can legally say the N-word. Congratulations!</span>")
 				H.regenerate_icons()
-
+*/
 //bughunter
 /obj/item/bughunter
 	name = "The Bug Hunter"
