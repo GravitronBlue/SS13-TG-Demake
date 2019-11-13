@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 	desc = null
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "pad-idle_blue"
-	density = 1
+	density = 0 // 1
 	anchored = 1
 	layer = 2.6
 	var/teleporting = 0
@@ -19,26 +19,6 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 	var/datum/perseus_supply_packs/chosen2 = null
 	var/list/supplied = list()
 	var/list/spawned_crates = list()
-	var/list/black_list = list(
-	/datum/supply_pack/emergency/droneshells,
-	/datum/supply_pack/medical/virus,
-	/datum/supply_pack/science/robotics/mecha_odysseus,
-	/datum/supply_pack/science/robotics/mecha_ripley,
-	/datum/supply_pack/science/shieldwalls,
-	/datum/supply_pack/science/transfer_valves,
-	/datum/supply_pack/security,
-	/datum/supply_pack/emergency/spacesuit,
-	/datum/supply_pack/engineering/engine,
-	/datum/supply_pack/engineering/grounding_rods,
-	/datum/supply_pack/organic/hydroponics/beekeeping_fullkit,
-	/datum/supply_pack/misc/mule
-	)
-	var/list/white_list = list( //Things in this list will be allowed even if in the black_list. Use this to add a specific child of a blacklisted item.
-	/datum/supply_pack/security/armory/mindshield,
-	/datum/supply_pack/security/wall_flash,
-	/datum/supply_pack/security/securitybarriers,
-	/datum/supply_pack/security/forensics
-	)
 
 /obj/machinery/computer/perseussupply/New()
 	var/image/implantimage = new(src)
@@ -53,6 +33,22 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 	I.layer = 5
 	var/list/overlaytemp = list(I)
 	overlays = overlaytemp
+	var/list/hide_type_list = list(
+//!!	/datum/supply_pack/emergency/droneshells,
+	/datum/supply_pack/emergency/weedcontrol,
+	/datum/supply_pack/medical/virus,
+//FIX	/datum/supply_pack/science/robotics/mecha_odysseus,
+//FIX	/datum/supply_pack/science/robotics/mecha_ripley,
+	/datum/supply_pack/science/shieldwalls,
+	/datum/supply_pack/science/transfer_valves,
+	/datum/supply_pack/security,
+	/datum/supply_pack/emergency/spacesuit,
+	/datum/supply_pack/engineering/shuttle_engine,
+//!!	/datum/supply_pack/engineering/engine,
+//!!	/datum/supply_pack/engineering/grounding_rods,
+	/datum/supply_pack/organic/hydroponics/beekeeping_fullkit,
+//!!	/datum/supply_pack/misc/mule
+	)
 	spawn(0)
 		while(!SSticker || !SSshuttle)
 			sleep(1)
@@ -60,19 +56,13 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 			sleep(10)
 		for(var/N in SSshuttle.supply_packs)
 			var/datum/supply_pack/S = SSshuttle.supply_packs[N]
-			var/white_listed = 0
-			for(var/T in white_list)
-				if(S.type == T)
-					white_listed = 1
+			var/inhide_type_list = 0
+			for(var/T in hide_type_list)
+				if(istype(S,T))
+					inhide_type_list = 1
 					break
-			if(!white_listed)
-				var/black_listed = 0
-				for(var/T in black_list)
-					if(istype(S,T))
-						black_listed = 1
-						break
-				if(black_listed)
-					continue
+			if(inhide_type_list)
+				continue
 			if(S.contraband || S.hidden || S.special || S.special_enabled || S.DropPodOnly || S.dangerous)
 				continue
 			if(convert_supply_cost(S.cost) > supply_cap)
@@ -222,9 +212,8 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 			var/list/spawned_items = ""
 			for(var/T in chosen.contains)
 				var/obj/O = new T(C)
-				if(GLOB.Perseus_Data["Perseus_Security_Systems"] && istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-					for(var/obj/machinery/computer/percsecuritysystem/percsec in GLOB.Perseus_Data["Perseus_Security_Systems"])
-						percsec.gather_equipment(O)
+				for(var/obj/machinery/computer/percsecuritysystem/percsec in world)
+					percsec.gather_equipment(O)
 				supplied += O
 				spawned_items += "[O.name]<BR>"
 			for(var/obj/item/stack/S in C)
@@ -278,9 +267,8 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 			C = new chosen2.containertype()
 			for(var/T in chosen2.contains)
 				var/obj/O = new T(C)
-				if(GLOB.Perseus_Data["Perseus_Security_Systems"] && istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-					for(var/obj/machinery/computer/percsecuritysystem/percsec in GLOB.Perseus_Data["Perseus_Security_Systems"])
-						percsec.gather_equipment(O)
+				for(var/obj/machinery/computer/percsecuritysystem/percsec in world)
+					percsec.gather_equipment(O)
 			if(chosen2.amount)
 				for(var/obj/item/stack/S in C)
 					S.amount = chosen2.amount
@@ -385,7 +373,7 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 			.++
 	AM.moveToNullspace()
 	qdel(AM)
-
+/*
 /obj/machinery/computer/perseussupply/CollidedWith(atom/movable/AM)
 	if(istype(AM,/obj/structure/closet))
 		var/alreadyacrate = 0
@@ -395,7 +383,7 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 		if(!alreadyacrate)
 			AM.loc = loc
 	return ..()
-
+*/
 /obj/machinery/computer/perseussupply/examine()
 	..()
 	if(!istype(usr,/mob/living))
@@ -456,8 +444,8 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 /obj/item/paper/perseussupply
 	var/percstamped = 0
 	attackby(obj/item/P, mob/living/user)
-		if(istype(user) && istype(P,/obj/item/device/pda/perseus))
-			var/obj/item/device/pda/perseus/pda = P
+		if(istype(user) && istype(P,/obj/item/pda/perseus))
+			var/obj/item/pda/perseus/pda = P
 			if(check_perseus(user) && !percstamped)
 				if(!in_range(src, usr) && loc != user && !istype(loc, /obj/item/clipboard) && loc.loc != user && user.get_active_held_item() != P)
 					return
@@ -489,7 +477,7 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 	var/cost = null
 	var/containertype = /obj/structure/closet/crate/secure/perc
 	var/containername = null
-	var/access = ACCESS_PERSEUS_ENFORCER
+	var/access = PERSEUS_ENFORCER
 	var/amount = 0
 
 /datum/perseus_supply_packs/New()
@@ -520,9 +508,9 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 	contains = list(/obj/item/card/id/perseus,
 					/obj/item/card/id/perseus,
 					/obj/item/card/id/perseus,
-					/obj/item/device/pda/perseus,
-					/obj/item/device/pda/perseus,
-					/obj/item/device/pda/perseus)
+					/obj/item/pda/perseus,
+					/obj/item/pda/perseus,
+					/obj/item/pda/perseus)
 	containername = "perseus identificiation crate"
 	cost = 15
 
@@ -562,7 +550,7 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 					/obj/item/clothing/shoes/sneakers/orange,
 					/obj/item/clothing/mask/muzzle,
 					/obj/item/clothing/suit/straight_jacket,
-					/obj/item/clothing/glasses/sunglasses/blindfold,
+					/obj/item/clothing/glasses/blindfold,
 					/obj/item/clothing/ears/earmuffs)
 	containername = "prisoner gear crate"
 	cost = 15
@@ -617,8 +605,8 @@ GLOBAL_LIST_EMPTY(perseus_supplypacks)
 					/obj/item/clothing/gloves/specops,
 					/obj/item/clothing/suit/armor/lightarmor,
 					/obj/item/clothing/suit/armor/lightarmor,
-					/obj/item/device/radio/headset/perseus,
-					/obj/item/device/radio/headset/perseus,
+					/obj/item/radio/headset/perseus,
+					/obj/item/radio/headset/perseus,
 					/obj/item/clothing/head/helmet/space/pershelmet,
 					/obj/item/clothing/head/helmet/space/pershelmet,
 					/obj/item/storage/belt/security/perseus,

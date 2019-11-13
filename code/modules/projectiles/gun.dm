@@ -25,7 +25,7 @@
 	var/suppressed = null					//whether or not a message is displayed when fired
 	var/can_suppress = FALSE
 	var/suppressed_sound = 'sound/weapons/gun/general/heavy_shot_suppressed.ogg'
-	var/suppressed_volume = 60 
+	var/suppressed_volume = 60
 	var/can_unsuppress = TRUE
 	var/recoil = 0						//boom boom shake the room
 	var/clumsy_check = TRUE
@@ -101,7 +101,7 @@
 	if(A == gun_light)
 		clear_gunlight()
 	return ..()
-
+/*
 /obj/item/gun/CheckParts(list/parts_list)
 	..()
 	var/obj/item/gun/G = locate(/obj/item/gun) in contents
@@ -109,6 +109,19 @@
 		G.forceMove(loc)
 		QDEL_NULL(G.pin)
 		visible_message("<span class='notice'>[G] can now fit a new pin, but the old one was destroyed in the process.</span>", null, null, 3)
+		qdel(src)
+*/
+/obj/item/gun/CheckParts(list/parts_list)
+	..()
+	var/obj/item/gun/G = locate(/obj/item/gun) in contents
+	if(G)
+		if(G.pin)
+			if(G.pin.cant_be_craft_removed)
+				visible_message("[G] can not have its firing pin removed.", null, null, 3)
+			else
+				QDEL_NULL(G.pin)
+				visible_message("[G] can now fit a new pin, but the old one was destroyed in the process.", null, null, 3)
+		G.forceMove(loc)
 		qdel(src)
 
 /obj/item/gun/examine(mob/user)

@@ -263,6 +263,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "</ul>"
 				dat += "</ul>"
 
+				//cartridge custom menu. This is how all the pda should get all menus from the cartridge. fuck tg. -falaskian
+				if (cartridge && cartridge.access & CART_CUSTOMMENU)
+					dat += "[cartridge.get_custom_menu(user)]"
+
 				dat += "<h4>Utilities</h4>"
 				dat += "<ul>"
 				if (cartridge)

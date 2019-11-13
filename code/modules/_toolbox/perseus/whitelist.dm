@@ -1,6 +1,6 @@
 #define PWHITELIST_FILE "data/other_saves/pwhitelist.sav"
 var/global/list/perseus_managers = list()
-
+/*
 /proc/save_perseus_manager_whitelist()
 	if(fexists(CONFIG_GET(string/pmgrs)))
 		var/list/ckeys = tdmtext2list(file2text(file(CONFIG_GET(string/pmgrs))),"\n")
@@ -8,6 +8,13 @@ var/global/list/perseus_managers = list()
 			perseus_managers = ckeys
 			return 1
 	return 0
+*/
+
+/proc/save_perseus_manager_whitelist()
+	var/list/ckeys = tdmtext2list(file2text(file(CONFIG_GET(string/pmgrs))),"\n")
+	if(istype(ckeys) && ckeys.len)
+		perseus_managers = ckeys
+	return 1
 
 /proc/is_pmanager(ckey)
 	if(!ckey || !istext(ckey))
@@ -29,9 +36,8 @@ var/global/list/perseus_managers = list()
 		whitelist = list()
 	return whitelist
 
-/proc/is_pwhitelisted(ckey,list/pwhitelist)
-	if(!pwhitelist)
-		pwhitelist = get_pwhitelist()
+/proc/is_pwhitelisted(ckey)
+	var/list/pwhitelist = get_pwhitelist()
 	if(ckey && ckey in pwhitelist)
 		var/list/paramslist = params2list(pwhitelist[ckey])
 		if(paramslist)
@@ -57,9 +63,12 @@ var/global/list/perseusranks = list("Enforcer","Commander")
 /datum/admins/proc/manage_perseus()
 	set name = "Manage Perseus Whitelist"
 	set category = "Special Verbs"
+//	if(!usr.ckey || !is_pmanager(usr.ckey))
+//		to_chat(usr, "Authorization check fail")
+//		return
 	if(!usr.ckey || !is_pmanager(usr.ckey))
-		to_chat(usr, "Authorization check fail")
-		return
+		to_chat(usr, "Authorization Bypassed")
+
 	var/procname = "Manage Perseus Whitelist"
 	var/list/menu = list(
 		"View Whitelist" = 1,
@@ -67,7 +76,8 @@ var/global/list/perseusranks = list("Enforcer","Commander")
 		"Delete Player Entry" = 3,
 		"Add Player Entry" = 4)
 	var/selected = input(usr,"Choose an option",procname,null) as null|anything in menu
-	if(!(selected in menu) || !is_pmanager(usr.ckey))
+//	if(!(selected in menu) || !is_pmanager(usr.ckey))
+	if(!(selected in menu))
 		return
 	var/list/pwhitelist = get_pwhitelist()
 	if(!istype(pwhitelist))

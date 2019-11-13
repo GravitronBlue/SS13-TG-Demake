@@ -32,10 +32,6 @@
 	var/emergency_situation = 0
 
 /obj/machinery/computer/percsecuritysystem/New()
-	if(!GLOB.Perseus_Data["Perseus_Security_Systems"] || !istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-		GLOB.Perseus_Data["Perseus_Security_Systems"] = list()
-	if(!(src in GLOB.Perseus_Data["Perseus_Security_Systems"]))
-		GLOB.Perseus_Data["Perseus_Security_Systems"] += src
 	var/image/I = new(src)
 	I.loc = src
 	I.icon = 'icons/oldschool/perseus.dmi'
@@ -46,12 +42,19 @@
 /obj/machinery/computer/percsecuritysystem/update_icon()
 
 /obj/machinery/computer/percsecuritysystem/proc/preparecells()
+/*
 	var/area/A = get_area(src)
 	for(var/area/AA in A.related)
 		for(var/obj/perseuscell/Pcell in AA)
 			if(!isturf(Pcell.loc))
 				continue
 			prisoncells[Pcell.loc] = Pcell.cell_range
+*/
+	var/area/A = get_area(src)
+	for(var/obj/perseuscell/Pcell in A)
+		if(!isturf(Pcell.loc))
+			continue
+		prisoncells[Pcell.loc] = Pcell.cell_range
 
 /obj/machinery/computer/percsecuritysystem/proc/hostile_check(mob/living/M)
 	if(!istype(M) || M.stat == DEAD || istype(M, /mob/living/silicon/ai))
@@ -705,9 +708,8 @@ proc/perseusshiprecall()
 		perseusAlert("Recall Systems","Mycenae III recall vote passed. The Mycenae III will return to HQ in 20 minutes.",0)
 	else
 		perseusAlert("Recall Systems","Mycenae III recall vote failed.",0)
-		if(GLOB.Perseus_Data["Perseus_Security_Systems"] && istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-			for(var/obj/machinery/computer/percsecuritysystem/C in GLOB.Perseus_Data["Perseus_Security_Systems"])
-				C.recalling = 0
+		for(var/obj/machinery/computer/percsecuritysystem/P in world)
+			P.recalling = 0
 		perseusshiprecalling = 0
 		return
 	perseusrecalltime = world.time + 12000
@@ -728,9 +730,8 @@ proc/perseusshiprecall()
 		sleep(10)
 	if(!perseusshiprecalling && recalled == 0)
 		perseusAlert("Recall Systems","Mycenae III recall has been canceled.",1)
-		if(GLOB.Perseus_Data["Perseus_Security_Systems"] && istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-			for(var/obj/machinery/computer/percsecuritysystem/C in GLOB.Perseus_Data["Perseus_Security_Systems"])
-				C.recalling = 0
+		for(var/obj/machinery/computer/percsecuritysystem/P in world)
+			P.recalling = 0
 		return
 
 /proc/recallmycenae()
@@ -746,8 +747,6 @@ proc/perseusshiprecall()
 		perseus_client_imaged_machines[src] = null
 		perseus_client_imaged_machines.Remove(src)
 	perseusAlert("Alert Systems","[src] destroyed. System messages will no longer be received.",1)
-	if(GLOB.Perseus_Data["Perseus_Security_Systems"] && istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-		GLOB.Perseus_Data["Perseus_Security_Systems"] -= src
 	..()
 
 /obj/machinery/computer/percsecuritysystem/attackby(obj/item/I, mob/living/user)

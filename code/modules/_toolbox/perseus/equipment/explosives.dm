@@ -5,7 +5,7 @@
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
-	flags_1 = NOBLUDGEON_1
+	item_flags = NOBLUDGEON
 	w_class = 2.0
 	//origin_tech = "syndicate=2"
 	var/timer = 10
@@ -53,7 +53,7 @@
 
 	to_chat(user, "Planting explosives...")
 	if(ismob(target))
-		add_logs(user, target, "tried to plant explosives on", object="[name]")
+		log_combat(user, target, "tried to plant explosives on", object="[name]")
 		user.visible_message("\red [user.name] is trying to plant some kind of explosive on [target.name]!")
 
 
@@ -63,7 +63,7 @@
 		loc = null
 
 		if (ismob(target))
-			add_logs(user, target, "planted [name] on")
+			log_combat(user, target, "planted [name] on")
 			user.visible_message("\red [user.name] finished planting an explosive on [target.name]!")
 			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted C4 on [key_name(target)](<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted C4 on [key_name(target)] with [timer] second fuse")

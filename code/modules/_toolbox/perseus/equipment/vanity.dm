@@ -34,17 +34,15 @@
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "pcigpacket"
 	item_state = "pcigpacket"
-	can_hold = list("/obj/item/clothing/mask/cigarette", "/obj/item/lighter/zippo/perc")
 
-/obj/item/storage/fancy/cigarettes/perc/update_icon()
-	if(fancy_open && !contents.len)
-		cut_overlays()
-		icon_state = initial(icon_state)
-		var/mutable_appearance/open_overlay = mutable_appearance(overlay_icon_file)
-		open_overlay.icon_state = "[icon_state]_open"
-		add_overlay(open_overlay)
-		return
-	return ..()
+/obj/item/storage/fancy/cigarettes/perc/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(
+	/obj/item/clothing/mask/cigarette,
+	/obj/item/lighter/zippo/perc
+	))
 
 /*
 * Victory Cigar
@@ -64,6 +62,6 @@
 /obj/item/bedsheet/perc
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "sheetperc"
-	item_color = "blue"
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+//	item_color = "blue"
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	dream_messages = list("blue", "monster truck", "energy project")

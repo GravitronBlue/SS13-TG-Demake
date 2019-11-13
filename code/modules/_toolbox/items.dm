@@ -8,7 +8,7 @@
 	icon = 'icons/oldschool/clothing/suititem.dmi'
 	icon_state = "makeshift_armor"
 	item_state = "armor"
-	alternate_worn_icon = 'icons/oldschool/clothing/suitmob.dmi'
+	mob_overlay_icon = 'icons/oldschool/clothing/suitmob.dmi'
 	blood_overlay_type = "armor"
 	max_integrity = 200
 	armor = list(melee = 25, bullet = 25, laser = 25, energy = 10, bomb = 20, bio = 0, rad = 0, fire = 40, acid = 40)

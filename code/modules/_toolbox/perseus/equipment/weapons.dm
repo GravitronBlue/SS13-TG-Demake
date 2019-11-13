@@ -28,34 +28,36 @@
 
 // PIN
 
-/obj/item/device/firing_pin/implant/perseus
+/obj/item/firing_pin/implant/perseus
 	cant_be_craft_removed = 1
 	var/required = /datum/extra_role/perseus
 	var/emagged = 0
 
-/obj/item/device/firing_pin/implant/perseus/pin_auth(mob/living/user)
+/obj/item/firing_pin/implant/perseus/pin_auth(mob/living/user)
 	if(emagged)
 		return 1
 	if(check_perseus(user))
 		return 1
 	return 0
 
-/obj/item/device/firing_pin/implant/perseus/emag_act(mob/living/user)
+/obj/item/firing_pin/implant/perseus/emag_act(mob/living/user)
 	return
 
-/obj/item/device/firing_pin/implant/perseus/auth_fail(mob/living/user)
+/obj/item/firing_pin/implant/perseus/auth_fail(mob/living/user)
 	var/datum/effect_system/spark_spread/S = new(get_turf(src))
 	S.set_up(3, 0, get_turf(src))
 	S.start()
 	to_chat(user, "<div class='warning'>The [src] shocks you.</div>")
-	user.AdjustKnockdown(40)
+	user.AdjustParalyzed(40)
 
 /obj/item/gun/ballistic/fiveseven
 	name = "five-seven"
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "fiveseven"
+//	fire_sound = 'sound/weapons/gunshot.ogg'
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	mag_type = /obj/item/ammo_box/magazine/fiveseven
-	pin = /obj/item/device/firing_pin/implant/perseus
+	pin = /obj/item/firing_pin/implant/perseus
 	force = 10
 	var/emagged = 0
 
@@ -68,9 +70,9 @@
 			to_chat(usr, "\blue It's locking mechanism looks fried.")
 
 	attackby(var/obj/item/I, var/mob/living/M)
-		if(istype(I, /obj/item/card/emag) && !emagged  && istype(pin,/obj/item/device/firing_pin/implant/perseus))
+		if(istype(I, /obj/item/card/emag) && !emagged  && istype(pin,/obj/item/firing_pin/implant/perseus))
 			emagged = 1
-			var/obj/item/device/firing_pin/implant/perseus/ppin = pin
+			var/obj/item/firing_pin/implant/perseus/ppin = pin
 			ppin.emagged = 1
 			to_chat(M, "<div class='notice'>You emag the [src].</div>")
 			var/datum/effect_system/spark_spread/system = new()
@@ -163,7 +165,7 @@
 				S.set_up(3, 0, get_turf(src))
 				S.start()
 				to_chat(user, "<div class='warning'>The [src] shocks you.</div>")
-				user.AdjustKnockdown(40)
+				user.AdjustParalyzed(40)
 				return
 		if(mode)
 			if(!issilicon(M))
@@ -172,11 +174,6 @@
 					do_stun = 0
 					to_chat(user,"<div class='warning'>The [src] is out of charge!</div>")
 				if(do_stun)
-					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
-						if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
-							playsound(H, 'sound/weapons/genhit.ogg', 50, 1)
-							return
 					do_stun(M,user)
 			else
 				. = 1
@@ -184,15 +181,15 @@
 
 	proc/do_stun(mob/living/M, mob/living/user)
 		last_stun = world.time
-		var/theknockdown = M.AmountKnockdown()
-		if(theknockdown <= 0)
-			M.SetKnockdown(stun_time*10)
+		var/theParalyze = M.AmountParalyzed()
+		if(theParalyze <= 0)
+			M.SetParalyzed(stun_time*10)
 		else
-			M.SetKnockdown(min(theknockdown+(stun_time*10),max_stacked_stun*10))
+			M.SetParalyzed(min(theParalyze+(stun_time*10),max_stacked_stun*10))
 		var/turf/T = get_turf(M)
 		playsound(get_turf(src), "sparks", 100, 1)
 		T.visible_message("<span class='danger'> [M] has been stunned by [user] with \the [src]")
-		add_logs(user, M, "stunned", object=src.name, addition=" (DAMAGE: [src.force]) (REMHP: [M.health - src.force]) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+		log_combat(user, M, "stunned", object=src.name, addition=" (DAMAGE: [src.force]) (REMHP: [M.health - src.force]) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 
 	attack_self(var/mob/user)
 		..()
@@ -224,10 +221,10 @@
 
 /obj/item/gun/medbeam/perseus
 	name = "Perseus Enforcer's Medical Beamgun"
-	pin = /obj/item/device/firing_pin/implant/perseus
+	pin = /obj/item/firing_pin/implant/perseus
 
 /obj/item/gun/medbeam/perseus/emag_act(mob/living/user)
-	var/obj/item/device/firing_pin/implant/perseus/ppin = pin
+	var/obj/item/firing_pin/implant/perseus/ppin = pin
 	if(istype(ppin) && !ppin.emagged)
 		ppin.emagged = 1
 		to_chat(user, "<div class='notice'>You emag the [src].</div>")

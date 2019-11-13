@@ -157,7 +157,7 @@ removed sections which read.
 	icon_state = "perc-jet"
 	item_state = "perc-jet"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	volume = 35
 	throw_range = 7
 	w_class = 3
@@ -256,12 +256,14 @@ removed sections which read.
 	"pda_perseus_c.png" = 'icons/pda_icons/pda_perseus_c.png'
 	)
 
-/obj/item/device/pda/perseus
+/obj/item/pda/perseus
 	name = "Perseus PDA"
 	default_cartridge = /obj/item/cartridge/perseus
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "pda-perc"
 	toff = TRUE
+
+/obj/item/pda/perseus/update_icon()
 
 /obj/item/cartridge/perseus
 	name = "\improper Perseus Cartridge"
@@ -291,7 +293,7 @@ removed sections which read.
 		S.set_up(3, 0, get_turf(src))
 		S.start()
 		to_chat(user, "<div class='warning'>The [src] shocks you.</div>")
-		user.AdjustKnockdown(40)
+		user.AdjustParalyzed(40)
 		return
 	if(host_pda)
 		var/thechoice = href_list["choice"]
@@ -399,4 +401,4 @@ removed sections which read.
 		new /obj/item/stack/medical/bruise_pack(src)
 		new /obj/item/stack/medical/ointment(src)
 		new /obj/item/storage/pill_bottle/charcoal(src)
-		new /obj/item/device/healthanalyzer(src)
+		new /obj/item/healthanalyzer(src)

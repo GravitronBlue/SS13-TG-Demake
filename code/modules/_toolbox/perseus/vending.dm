@@ -17,7 +17,7 @@
 	/obj/item/reagent_containers/food/snacks/eggplantparm = 3, /obj/item/reagent_containers/food/snacks/cakeslice/carrot = 3,
 	/obj/item/reagent_containers/food/snacks/omelette = 3, /obj/item/reagent_containers/food/snacks/soup/tomato = 3,
 	/obj/item/reagent_containers/food/snacks/waffles = 3, /obj/item/reagent_containers/food/snacks/sandwich = 3,
-	/obj/item/reagent_containers/food/snacks/meatballspaghetti = 3, /obj/item/reagent_containers/food/snacks/cubancarp = 3,
+	/obj/item/reagent_containers/food/snacks/spaghetti/meatballspaghetti = 3, /obj/item/reagent_containers/food/snacks/cubancarp = 3,
 	/obj/item/reagent_containers/food/snacks/soup/stew =3, /obj/item/reagent_containers/food/snacks/burger/superbite = 1,
 	/obj/item/reagent_containers/food/snacks/candiedapple = 3, /obj/item/reagent_containers/food/snacks/pie/applepie = 3,
 	/obj/item/reagent_containers/food/snacks/pie/cherrypie = 3, /obj/item/reagent_containers/food/snacks/meat/slab/xeno = 3,
@@ -44,7 +44,7 @@
 
 	products = list(/obj/item/reagent_containers/glass/bottle/charcoal = 4, /obj/item/reagent_containers/glass/bottle/epinephrine = 4,
 	/obj/item/reagent_containers/glass/bottle/morphine = 4,/obj/item/reagent_containers/glass/bottle/toxin = 4,
-	/obj/item/reagent_containers/syringe/antiviral = 4,/obj/item/reagent_containers/syringe = 12, /obj/item/device/healthanalyzer = 5,
+	/obj/item/reagent_containers/syringe/antiviral = 4,/obj/item/reagent_containers/syringe = 12, /obj/item/healthanalyzer = 5,
 	/obj/item/reagent_containers/glass/beaker = 4,/obj/item/reagent_containers/dropper = 2, /obj/item/stack/medical/bruise_pack = 6,
 	/obj/item/stack/medical/ointment = 6, /obj/item/stimpack/perseus = 10,/obj/item/stack/medical/gauze=5)
 
@@ -64,11 +64,11 @@
 	icon_deny = "perseus-deny"
 	icon = 'icons/oldschool/perseus.dmi'
 	req_access_txt = "561"
-	products = list(/obj/item/restraints/handcuffs = 10,/obj/item/grenade/flashbang = 2, /obj/item/device/assembly/flash/handheld = 5,
+	products = list(/obj/item/restraints/handcuffs = 10,/obj/item/grenade/flashbang = 2, /obj/item/assembly/flash/handheld = 5,
 	/obj/item/tank/perseus = 8, /obj/item/tank/internals/oxygen = 4,/obj/item/storage/fancy/cigarettes/perc = 5,
 	/obj/item/storage/box/matches = 5, /obj/item/c4_ex/breach = 5, /obj/item/clothing/mask/cigarette/cigar/victory = 6)
 
-	contraband = list(/obj/item/tank/jetpack/oxygen/perctech = 2, /obj/item/storage/fancy/donut_box = 2, /obj/item/device/aicard = 1)
+	contraband = list(/obj/item/tank/jetpack/oxygen/perctech = 2, /obj/item/storage/fancy/donut_box = 2, /obj/item/aicard = 1)
 
 	can_be_unfasten_wrench(mob/user, silent)
 		return FAILED_UNFASTEN
@@ -107,8 +107,8 @@
 	use_power = 0
 	idle_power_usage = 0
 	active_power_usage = 0
-	icon_on = "Percprisoner"
-	icon_off = "Percprisoner"
+//!	icon_on = "Percprisoner"
+//!	icon_off = "Percprisoner"
 	density = 0
 	req_access = list(ACCESS_PERSEUS_ENFORCER)
 
@@ -123,7 +123,7 @@
 		/obj/item/restraints/handcuffs = 5,
 		/obj/item/clothing/mask/muzzle = 5,
 		/obj/item/clothing/suit/straight_jacket = 5,
-		/obj/item/clothing/glasses/sunglasses/blindfold = 5)
+		/obj/item/clothing/glasses/blindfold = 5)
 
 	can_be_unfasten_wrench(mob/user, silent)
 		return FAILED_UNFASTEN

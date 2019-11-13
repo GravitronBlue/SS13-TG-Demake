@@ -23,7 +23,7 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 	cell_type = /obj/item/stock_parts/cell/magazine/ep90
 	ammo_type = list(/obj/item/ammo_casing/energy/ep90_single, /obj/item/ammo_casing/energy/ep90_aoe, /obj/item/ammo_casing/energy/ep90_burst_3, /obj/item/ammo_casing/energy/ep90_burst_5)
 	fire_sound = 'sound/toolbox/ep90.ogg'
-	pin = /obj/item/device/firing_pin/implant/perseus
+	pin = /obj/item/firing_pin/implant/perseus
 	//selfcharge = 0 //nerfing self charge. You can use your extra power cells, thats what theyre for. -falaskian
 	//charge_delay = 2
 	var/emagged = 0
@@ -56,7 +56,7 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 			cell.update_icon()
 			cell = 0
 			update_icon()
-			if(!M.equip_to_slot_if_possible(I, slot_hands))	return
+			if(!M.equip_to_slot_if_possible(I, SLOT_HANDS))	return
 			return
 		. = ..()
 
@@ -85,14 +85,14 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 			panel = !panel
 			to_chat(M, "<div class='danger'>You [panel ? "open" : "close"] the maintenance panel.</div>")
 			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(istype(I, /obj/item/weldingtool) && emagged && panel && istype(pin,/obj/item/device/firing_pin/implant/perseus))
+		if(istype(I, /obj/item/weldingtool) && emagged && panel && istype(pin,/obj/item/firing_pin/implant/perseus))
 			var/obj/item/weldingtool/WT = I
 			if(!WT.use(0))
 				return
 			playsound(loc, 'sound/items/Welder2.ogg', 40, 1)
 			to_chat(M, "<div class='danger'>You repair the [src].</div>")
 			emagged = 0
-			var/obj/item/device/firing_pin/implant/perseus/ppin = pin
+			var/obj/item/firing_pin/implant/perseus/ppin = pin
 			ppin.emagged = 1
 			selfcharge = 1
 			for (var/obj/item/ammo_casing/E in ammo_type)
@@ -104,8 +104,8 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 		. = ..()
 
 	emag_act(mob/living/user)
-		if(!emagged && istype(pin,/obj/item/device/firing_pin/implant/perseus))
-			var/obj/item/device/firing_pin/implant/perseus/ppin = pin
+		if(!emagged && istype(pin,/obj/item/firing_pin/implant/perseus))
+			var/obj/item/firing_pin/implant/perseus/ppin = pin
 			ppin.emagged = 1
 			emagged = 1
 			//selfcharge = 0 //commenting this because we nerfed ep90 self charge -falaskian
@@ -185,7 +185,7 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 	hitsound = 'sound/effects/sparks1.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	stun = EP_STUNTIME_SINGLE
-	knockdown = EP_STUNTIME_SINGLE
+	paralyze = EP_STUNTIME_SINGLE
 	stutter = EP_STUNTIME_SINGLE
 
 	damage = 1
@@ -212,18 +212,18 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 			if((L.AmountStun() + stun) > max)	L.SetStun(max)
 			else							L.AdjustStun(stun)
 
-			if((L.AmountKnockdown() + knockdown) > max)	L.SetKnockdown(max)
-			else							L.AdjustKnockdown(knockdown)
+			if((L.AmountParalyzed() + paralyze) > max)	L.SetParalyzed(max)
+			else							L.AdjustParalyzed(paralyze)
 
 			if((L.stuttering + stutter) > max)	L.stuttering = max
 			else								L.stuttering += stutter
 
 			L.updatehealth()
-			L.update_canmove()
+			L.update_mobility()
 
 		else if (check_perseus(L) && !emagged)
 			if(blocked >= 100) return 0
-			L.apply_effects(stun, knockdown, 0, 0, stutter)
+			L.apply_effects(stun, paralyze, 0, 0, stutter)
 		else if (emagged)
 			L.apply_effects(3, 3, 0, 0, 3)
 
@@ -238,7 +238,7 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
 	stun = EP_STUNTIME_AOE
-	knockdown = EP_STUNTIME_AOE
+	paralyze = EP_STUNTIME_AOE
 	stutter = EP_STUNTIME_AOE
 
 	damage = 1
@@ -254,26 +254,26 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 			new /obj/effect/particle_effect/sparks(get_turf(T))
 			for(var/mob/living/M in T)
 				if(IS_EP_AOE_STACKING && !emagged && !check_perseus(M))
-					if((M.AmountKnockdown() + knockdown) > EP_MAX_AOE_STACK)
-						M.SetKnockdown(EP_MAX_AOE_STACK)
+					if((M.AmountParalyzed() + paralyze) > EP_MAX_AOE_STACK)
+						M.SetParalyzed(EP_MAX_AOE_STACK)
 					else
-						M.AdjustKnockdown(knockdown)
+						M.AdjustParalyzed(paralyze)
 					M.updatehealth()
 					continue
 				else if (check_perseus(M) && !emagged)
-					M.SetKnockdown(EP_STUNTIME_AOE)
+					M.SetParalyzed(EP_STUNTIME_AOE)
 				else if (emagged)
-					M.SetKnockdown(60)
+					M.SetParalyzed(60)
 
 	Range()
 		if(!maxrange && firer && original)
 			maxrange = get_dist(get_turf(firer),get_turf(original))+1
 		if(isturf(original) && loc == original)
-			Collide(loc)
+			Bump(loc) //Collide(loc)
 		else
 			maxrange = max(maxrange-1,0)
 			if(maxrange <= 0)
-				Collide(loc)
+				Bump(loc) //Collide(loc)
 		return ..()
 
 /*
@@ -357,18 +357,18 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 		if((L.AmountStun() + stun) > max)	L.SetStun(max)
 		else							L.AdjustStun(stun)
 
-		if((L.AmountKnockdown() + knockdown) > max)	L.SetKnockdown(max)
-		else							L.AdjustKnockdown(knockdown)
+		if((L.AmountParalyzed() + paralyze) > max)	L.SetParalyzed(max)
+		else							L.AdjustParalyzed(paralyze)
 
 		if((L.stuttering + stutter) > max)	L.stuttering = max
 		else								L.stuttering += stutter
 
 		L.updatehealth()
-		L.update_canmove()
+		L.update_mobility()
 
 	else if (check_perseus(L) && !emagged)
 		if(blocked >= 100) return 0
-		L.apply_effects(stun, knockdown, 0, 0, stutter)
+		L.apply_effects(stun, paralyze, 0, 0, stutter)
 	else if (emagged)
 		L.apply_effects(3, 3, 0, 0, 3)
 
@@ -393,13 +393,13 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 			new /obj/effect/particle_effect/sparks(get_turf(T))
 			for(var/mob/living/M in T)
 				if(IS_EP_AOE_STACKING && check_perseus(M))
-					if((M.AmountKnockdown() + knockdown) > EP_MAX_AOE_STACK)
-						M.SetKnockdown(EP_MAX_AOE_STACK)
+					if((M.AmountParalyzed() + paralyze) > EP_MAX_AOE_STACK)
+						M.SetParalyzed(EP_MAX_AOE_STACK)
 					else
-						M.AdjustKnockdown(knockdown)
+						M.AdjustParalyzed(paralyze)
 					M.updatehealth()
 					continue
 				else if (check_perseus(M) && !emagged)
-					M.SetKnockdown(EP_STUNTIME_AOE)
+					M.SetParalyzed(EP_STUNTIME_AOE)
 				else if (emagged)
-					M.SetKnockdown(60)
+					M.SetParalyzed(60)

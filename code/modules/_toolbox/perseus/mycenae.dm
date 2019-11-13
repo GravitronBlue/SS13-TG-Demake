@@ -6,17 +6,17 @@
 	req_access = list(ACCESS_PERSEUS_ENFORCER)
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "enforcer"
-	circuitry_removable = 0
+//!!	circuitry_removable = 0
 	PopulateContents()
 		..()
 		new /obj/item/clothing/shoes/combat(src)
 		new /obj/item/clothing/suit/armor/lightarmor(src)
 		new /obj/item/clothing/head/helmet/space/pershelmet(src)
 		new /obj/item/clothing/mask/gas/perseus_voice(src)
-		new /obj/item/device/radio/headset/perseus(src)
+		new /obj/item/radio/headset/perseus(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new	/obj/item/storage/box/flashbangs(src)
-		new /obj/item/device/assembly/flash/handheld(src)
+		new /obj/item/assembly/flash/handheld(src)
 		new /obj/item/restraints/handcuffs(src)
 		new /obj/item/tank/perseus(src)
 		new /obj/item/clothing/gloves/specops(src)
@@ -32,7 +32,7 @@
 	req_access = list(ACCESS_PERSEUS_COMMANDER)
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "commander"
-	circuitry_removable = 0
+//!!	circuitry_removable = 0
 	PopulateContents()
 		..()
 		new /obj/item/clothing/under/perseus_fatigues(src)
@@ -44,11 +44,11 @@
 		new /obj/item/clothing/suit/armor/lightarmor(src)
 		new /obj/item/clothing/mask/gas/perseus_voice(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
-		new /obj/item/device/radio/headset/perseus(src)
+		new /obj/item/radio/headset/perseus(src)
 		new /obj/item/ammo_box/magazine/fiveseven(src)
 		new /obj/item/storage/box/flashbangs(src)
-		//new /obj/item/device/portableteledisruptor/secondary(src)
-		new /obj/item/device/assembly/flash/handheld(src)
+		//new /obj/item/portableteledisruptor/secondary(src)
+		new /obj/item/assembly/flash/handheld(src)
 		new /obj/item/restraints/handcuffs(src)
 		new /obj/item/shield/riot/perc(src)
 		new /obj/item/clothing/gloves/specops(src)
@@ -96,7 +96,7 @@
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "medical_wall"
 	wall_mounted = 1
-	circuitry_removable = 0
+//!!	circuitry_removable = 0
 
 	PopulateContents()
 		new /obj/item/storage/firstaid/o2(src)
@@ -167,7 +167,6 @@
 	allow_duplicates = FALSE
 	prefix = "_maps/toolbox/Mycenae3.dmm"
 
-GLOBAL_LIST_EMPTY(Perseus_Data)
 /var/global/Mycenae_In_Space = 0
 /proc/Create_Mycenae()
 	if(Mycenae_In_Space)
@@ -178,10 +177,9 @@ GLOBAL_LIST_EMPTY(Perseus_Data)
 		for(var/i=50,i>0,i--)
 			if(S.try_to_place(pick(z_levels),/area/space))
 				Mycenae_In_Space = 1
-				if(GLOB.Perseus_Data["Perseus_Security_Systems"] && istype(GLOB.Perseus_Data["Perseus_Security_Systems"],/list))
-					for(var/obj/machinery/computer/percsecuritysystem/C in GLOB.Perseus_Data["Perseus_Security_Systems"])
-						C.preparecells()
-						C.gather_equipment()
+				for(var/obj/machinery/computer/percsecuritysystem/C in world)
+					C.preparecells()
+					C.gather_equipment()
 				return 1
 
 	return 0

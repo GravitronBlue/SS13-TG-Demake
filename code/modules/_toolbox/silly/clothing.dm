@@ -22,7 +22,7 @@
 	icon = 'icons/oldschool/clothing/suititem.dmi'
 	icon_state = "filthypink"
 	item_state = "p_suit"
-	alternate_worn_icon = 'icons/oldschool/clothing/suitmob.dmi'
+	mob_overlay_icon = 'icons/oldschool/clothing/suitmob.dmi'
 	body_parts_covered = CHEST|GROIN|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0, fire = 0, acid = 0)
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
@@ -33,7 +33,7 @@
 	desc = null
 	icon = 'icons/oldschool/clothing/headitem.dmi'
 	icon_state = "filthypink"
-	alternate_worn_icon = 'icons/oldschool/clothing/headmob.dmi'
+	mob_overlay_icon = 'icons/oldschool/clothing/headmob.dmi'
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEEARS
 
@@ -45,7 +45,7 @@
 	icon = 'icons/oldschool/clothing/maskitem.dmi'
 	icon_state = "skullbalaclava"
 	item_state = "bgloves"
-	alternate_worn_icon = 'icons/oldschool/clothing/maskmob.dmi'
+	mob_overlay_icon = 'icons/oldschool/clothing/maskmob.dmi'
 
 //track suit
 /obj/item/clothing/under/tracksuit
@@ -54,7 +54,7 @@
 	icon = 'icons/oldschool/clothing/uniformitem.dmi'
 	icon_state = "slav_track_suit"
 	item_state = "bl_suit"
-	alternate_worn_icon = 'icons/oldschool/clothing/uniformmob.dmi'
+	mob_overlay_icon = 'icons/oldschool/clothing/uniformmob.dmi'
 
 /obj/item/clothing/under/tracksuit/spawn_with_vodka/New()
 	. = ..()
@@ -110,7 +110,7 @@
 	name = "botanist belt"
 	desc = "Can carry things like seeds, plant nutrients and other things like that."
 	icon = 'icons/oldschool/clothing/beltitem.dmi'
-	alternate_worn_icon = 'icons/oldschool/clothing/beltmob.dmi'
+	mob_overlay_icon = 'icons/oldschool/clothing/beltmob.dmi'
 	icon_state = "bbelt"
 	item_state = "bbelt"
 	lefthand_file = 'icons/oldschool/inhand_left.dmi'

@@ -11,8 +11,8 @@
 	name = "combat boots"
 	icon_state = "swat"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
-	flags_1 = NOSLIP_1
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
+	clothing_flags = NOSLIP
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0)
 	var/obj/item/stun_knife/knife
 	cold_protection = FEET
@@ -52,11 +52,12 @@
 	name = "Perseus skin suit"
 	icon_state = "pers_skinsuit"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
-	item_state = "perc"
-	item_color = "pers_skinsuit"
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
+//	item_state = "perc"
+	item_state = "pers_skinsuit"
+//	item_color = "pers_skinsuit"
 	desc = "Standard issue to Perseus Security personnel in space assignments. Maintains a safe internal atmosphere for the user."
-	flags_1 = STOPSPRESSUREDMAGE_1
+	clothing_flags = STOPSPRESSUREDAMAGE
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	w_class = 3
 	has_sensor = 0
@@ -71,7 +72,7 @@
 	desc = "A close-fitting mask that can filter some environmental toxins or be connected to an air supply."
 	icon_state = "persmask"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	item_state = "gas_alt"
 	var/locked = /datum/extra_role/perseus
 	permeability_coefficient = 0
@@ -94,7 +95,7 @@
 	icon_state = "persarmour"
 	item_state = "persarmour"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0)
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
@@ -108,7 +109,7 @@
 	desc = "A darkened backpack."
 	icon_state = "blackpack"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	lefthand_file = 'icons/oldschool/perseus_inhand_left.dmi'
 	righthand_file = 'icons/oldschool/perseus_inhand_right.dmi'
 
@@ -122,7 +123,7 @@
 	icon_state = "persgloves"
 	item_state = "persgloves"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
 	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	heat_protection = HANDS
@@ -140,7 +141,7 @@
 	desc = "A black jacket."
 	icon_state = "blackjacket"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	item_state = "blackjacket"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
@@ -153,9 +154,9 @@
 	desc = "A very plain dark blue jumpsuit."
 	icon_state = "pers_blue"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	item_state = "bl_suit"
-	item_color = "bl_suit"
+//	item_color = "bl_suit"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 
@@ -168,9 +169,10 @@
 	desc = "Casual clothing for a commanding officer."
 	icon_state = "persjumpsuit"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
-	item_state = "bl_suit"
-	item_color = "persfatigues"
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
+//	item_state = "bl_suit"
+	item_state = "persfatigues"
+//	item_color = "persfatigues"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 
@@ -208,9 +210,9 @@
 	desc = "Only given to the elite of the Perseus elite."
 	icon_state = "persberet"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
-	flags_1 = STOPSPRESSUREDMAGE_1 | THICKMATERIAL_1
-	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEFACE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = 0
@@ -224,9 +226,9 @@
 	desc = "Standard issue to Perseus' specialist enforcer team."
 	icon_state = "pershelmet"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
-	flags_1 = THICKMATERIAL_1 | STOPSPRESSUREDMAGE_1
-	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
+	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
+	flags_cover = HEADCOVERSEYES
 	flags_inv = HIDEFACE | HIDEHAIR
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0)
@@ -239,7 +241,7 @@
 	desc = "A coat that protects against the bitter cold."
 	icon_state = "coatperc"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 
 /*
 * Perseus Belt
@@ -250,21 +252,26 @@
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "perctechbelt"
 	item_state = "perctechbelt"
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
-	storage_slots = 7
-	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
+	content_overlays = FALSE
+
+/obj/item/storage/belt/security/perseus/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.max_w_class = WEIGHT_CLASS_SMALL
+	STR.set_holdable(list(
 		/obj/item/grenade,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/restraints/handcuffs,
-		/obj/item/device/assembly/flash/handheld,
+		/obj/item/assembly/flash/handheld,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_box,
 		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/kitchen/knife/combat,
-		/obj/item/device/flashlight,
-		/obj/item/device/radio,
+		/obj/item/flashlight,
+		/obj/item/radio,
 		/obj/item/clothing/gloves,
 		/obj/item/restraints/legcuffs/bola,
 		/obj/item/holosign_creator/security,
@@ -273,20 +280,18 @@
 		/obj/item/reagent_containers/pill,
 		/obj/item/stimpack,
 		/obj/item/c4_ex/breach
-		)
-	content_overlays = FALSE
-
+		))
 /*
 * Perseus Headset
 */
-/obj/item/device/radio/headset/perseus
+/obj/item/radio/headset/perseus
 	name = "Perseus Enforcer's Headset"
 	desc = "Standard headset of the Perseus Enforcer.\nTo access the security channel, use :s. For command, use :c."
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "perseus_headset"
-	keyslot = new /obj/item/device/encryptionkey/perseus
+	keyslot = new /obj/item/encryptionkey/perseus
 
-/obj/item/device/encryptionkey/perseus
+/obj/item/encryptionkey/perseus
 	name = "Perseus encryption key"
 	desc = "An encryption key for a radio headset.  To access the security channel, use :s. For command, use :c."
 	icon_state = "cap_cypherkey"
@@ -297,7 +302,7 @@
 	desc = "A combination of thermals and nightvision."
 	icon_state = "percnight"
 	icon = 'icons/oldschool/perseus.dmi'
-	alternate_worn_icon = 'icons/oldschool/perseus_worn.dmi'
+	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	item_state = "glasses"
 	flash_protect = 1
 	vision_flags = SEE_BLACKNESS

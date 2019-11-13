@@ -12,6 +12,7 @@
 	var/force_replace = 0 // Can forcefully replace other pins.
 	var/pin_removeable = 0 // Can be replaced by any pin.
 	var/obj/item/gun/gun
+	var/cant_be_craft_removed = 0
 
 /obj/item/firing_pin/New(newloc)
 	..()

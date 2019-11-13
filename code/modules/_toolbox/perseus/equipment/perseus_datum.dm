@@ -1,5 +1,5 @@
-#define PERSEUS_HUD "20" //BLUE_HUD_TEXT
-#define HUD_PERSEUS 23 //BLUE_HUD_GLOBAL
+#define PERSEUS_HUD "23" //BLUE_HUD_TEXT
+#define HUD_PERSEUS 27 //BLUE_HUD_GLOBAL
 
 //
 //Perseus extra role //this is to replace the implant -falaskian
@@ -161,12 +161,14 @@
 			if(!changed)
 				changed = 1
 			A.on_removal()
+/*//! REWRITE REQUIRED
 	if(istype(affecting.objectives,/list) && affecting.objectives.len)
 		for(var/datum/objective/O in affecting.objectives)
 			if(!changed)
 				changed = 1
 			affecting.objectives -= O
 			qdel(O)
+*/
 	if(affecting.special_role)
 		affecting.special_role = ""
 		if(!changed)
@@ -177,7 +179,7 @@
 		to_chat(affecting.current, "<span class='notice'>Your memories have been wiped clean. If you were previously an antagonist, you no longer are.</span>")
 		var/perseustext = "You are a Perseus Enforcer. Follow and obey the SOP as well as your Perseus Commander should one be present."
 		if(iscommander)
-			perseustext = "You are the Perseus Commander, you command the Mycenae III and other Perseus Enforcers. Follow and obey the SOP. You answer only to Nanotransen Offials."
+			perseustext = "You are the Perseus Commander, you command the Mycenae III and other Perseus Enforcers. Follow and obey the SOP. You answer only to Nanotransen Officials."
 		to_chat(affecting.current, "<span class='notice'>[perseustext]</span>")
 
 /datum/extra_role/perseus/proc/clear_implants()
@@ -254,10 +256,10 @@
 			var/turf/current_turf = get_turf(affecting.current)
 			if(current_area)
 				perseusAlert("Lifesigns Alert","[affecting.current.name] is [affecting.current.stat == DEAD ? "dead" : "in critical condition"]! Location: [current_area.name] ([current_turf.x],[current_turf.y],[current_turf.z])", 2)
-
+/*
 /datum/extra_role/perseus/get_who_list_info()
 	 return "<font color='blue'><b>Perc</b></font>"
-
+*/
 // *****************
 // PERSEUS ADRENAL
 // *****************
@@ -285,11 +287,11 @@
 	to_chat(H, "<span class='notice'>You feel a sudden surge of energy! Return to the Mycenae to recharge your [name].</span>")
 
 	H.SetStun(0)
-	H.SetKnockdown(0)
+	H.SetParalyzed(0)
 	H.SetUnconscious(0)
 	H.adjustStaminaLoss(-75)
 	H.lying = 0
-	H.update_canmove()
+	H.update_mobility()
 
 	H.reagents.add_reagent("synaptizine", 10)
 	H.reagents.add_reagent("omnizine", 10)

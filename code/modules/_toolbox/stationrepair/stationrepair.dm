@@ -1,3 +1,5 @@
+/// TG already has their own station chunk repair as part of buildmode, which normally still works but any map change breaks it for some reason. - G Blue
+/*
 GLOBAL_LIST_EMPTY(savedstationfloors)
 GLOBAL_LIST_EMPTY(savedstationwalls)
 GLOBAL_LIST_EMPTY(savedstationwindows)
@@ -82,7 +84,7 @@ proc
 			if(!A)
 				continue
 			GLOB.savedstationapcs += "x=[apc.x];y=[apc.y];z=[apc.z];name=[apc.name];dir=[apc.dir];tdir=[apc.tdir];cell_type=[apc.cell_type];APCAREA=[A.type]"
-
+*/
 /proc/tdmtext2list(text, delimiter="\n") //shit, toolbox didnt have this proc, i dont know what the new version is. just using the one from tdm.
 	var/delim_len = length(delimiter)
 	if(delim_len < 1) return list(text)
@@ -179,7 +181,7 @@ proc
 		#undef S16
 		#undef S4
 		#undef S1
-
+/*
 proc
 	FixStation(list/aoelist = list())
 		set background = 1
@@ -581,3 +583,4 @@ proc/FixWiring(list/aoelist = list())
 			FixStation()
 			message_admins("[usr] has performed a full station repair.")
 	return
+*/
