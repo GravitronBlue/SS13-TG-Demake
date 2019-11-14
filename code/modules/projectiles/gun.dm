@@ -101,16 +101,7 @@
 	if(A == gun_light)
 		clear_gunlight()
 	return ..()
-/*
-/obj/item/gun/CheckParts(list/parts_list)
-	..()
-	var/obj/item/gun/G = locate(/obj/item/gun) in contents
-	if(G)
-		G.forceMove(loc)
-		QDEL_NULL(G.pin)
-		visible_message("<span class='notice'>[G] can now fit a new pin, but the old one was destroyed in the process.</span>", null, null, 3)
-		qdel(src)
-*/
+
 /obj/item/gun/CheckParts(list/parts_list)
 	..()
 	var/obj/item/gun/G = locate(/obj/item/gun) in contents

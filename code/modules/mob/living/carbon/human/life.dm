@@ -52,13 +52,26 @@
 
 
 /mob/living/carbon/human/calculate_affecting_pressure(pressure)
+/*
 	if (wear_suit && head && istype(wear_suit, /obj/item/clothing) && istype(head, /obj/item/clothing))
 		var/obj/item/clothing/CS = wear_suit
 		var/obj/item/clothing/CH = head
 		if (CS.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
 			return ONE_ATMOSPHERE
 	return pressure
-
+*/
+	/// This is a really terrible way to fix jumpsuits and the above code really should be rewritten, hopefully soon. - G Blue
+	if (head && istype(head, /obj/item/clothing))
+		var/obj/item/clothing/CH = head
+		if(wear_suit && istype(wear_suit, /obj/item/clothing))
+			var/obj/item/clothing/CS = wear_suit
+			if (CS.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
+				return ONE_ATMOSPHERE
+		if(w_uniform && istype(w_uniform, /obj/item/clothing))
+			var/obj/item/clothing/CU = w_uniform
+			if(CU.clothing_flags & CH.clothing_flags & STOPSPRESSUREDAMAGE)
+				return ONE_ATMOSPHERE
+	return pressure
 
 /mob/living/carbon/human/handle_traits()
 	if(eye_blind)			//blindness, heals slowly over time

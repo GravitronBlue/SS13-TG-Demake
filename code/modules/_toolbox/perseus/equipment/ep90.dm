@@ -18,7 +18,7 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 	lefthand_file = 'icons/oldschool/perseus_inhand_left.dmi'
 	righthand_file = 'icons/oldschool/perseus_inhand_right.dmi'
 	icon_state = "ep90"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	item_state = "ep"
 	cell_type = /obj/item/stock_parts/cell/magazine/ep90
 	ammo_type = list(/obj/item/ammo_casing/energy/ep90_single, /obj/item/ammo_casing/energy/ep90_aoe, /obj/item/ammo_casing/energy/ep90_burst_3, /obj/item/ammo_casing/energy/ep90_burst_5)
@@ -119,9 +119,9 @@ var/const/EP_MAX_AOE_STACK = 7 * 20
 		return
 
 	examine()
-		..()
+		. = ..()
 		if(emagged)
-			to_chat(usr, "\blue It's locking mechanism looks fried.")
+			. += "\blue It's locking mechanism looks fried."
 
 /obj/item/gun/energy/ep90/can_trigger_gun(var/mob/living/user)
 	if (panel)

@@ -1,5 +1,5 @@
-#define PERSEUS_HUD "23" //BLUE_HUD_TEXT
-#define HUD_PERSEUS 27 //BLUE_HUD_GLOBAL
+#define PERSEUS_HUD "24" //BLUE_HUD_TEXT
+#define HUD_PERSEUS 26 //BLUE_HUD_GLOBAL
 
 //
 //Perseus extra role //this is to replace the implant -falaskian

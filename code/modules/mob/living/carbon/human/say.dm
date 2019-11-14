@@ -8,26 +8,7 @@
 //mask proc to check if voice should be disguised as your id name, default is never
 /obj/item/clothing/mask/proc/disguise_voice()
 	return 0
-/*
-/mob/living/carbon/human/GetVoice()
-	if(istype(wear_mask, /obj/item/clothing/mask/chameleon))
-		var/obj/item/clothing/mask/chameleon/V = wear_mask
-		if(V.vchange && wear_id)
-			var/obj/item/card/id/idcard = wear_id.GetID()
-			if(istype(idcard))
-				return idcard.registered_name
-			else
-				return real_name
-		else
-			return real_name
-	if(mind)
-		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-		if(changeling && changeling.mimicing )
-			return changeling.mimicing
-	if(GetSpecialVoice())
-		return GetSpecialVoice()
-	return real_name
-*/
+
 /mob/living/carbon/human/GetVoice()
 	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/V = wear_mask

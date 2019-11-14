@@ -53,9 +53,7 @@
 	icon_state = "pers_skinsuit"
 	icon = 'icons/oldschool/perseus.dmi'
 	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
-//	item_state = "perc"
 	item_state = "pers_skinsuit"
-//	item_color = "pers_skinsuit"
 	desc = "Standard issue to Perseus Security personnel in space assignments. Maintains a safe internal atmosphere for the user."
 	clothing_flags = STOPSPRESSUREDAMAGE
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
@@ -156,7 +154,6 @@
 	icon = 'icons/oldschool/perseus.dmi'
 	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
 	item_state = "bl_suit"
-//	item_color = "bl_suit"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 
@@ -170,9 +167,7 @@
 	icon_state = "persjumpsuit"
 	icon = 'icons/oldschool/perseus.dmi'
 	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
-//	item_state = "bl_suit"
 	item_state = "persfatigues"
-//	item_color = "persfatigues"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 
@@ -183,7 +178,6 @@
 /obj/item/shield/riot/perc
 	name = "PercTech Riot Shield"
 	desc = "A PercTech shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
-	//icon = 'icons/obj/weapons.dmi'
 	icon_state = "perc_shield"
 	icon = 'icons/oldschool/perseus.dmi'
 	lefthand_file = 'icons/oldschool/perseus_inhand_left.dmi'

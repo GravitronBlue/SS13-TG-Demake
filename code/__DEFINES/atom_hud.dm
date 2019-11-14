@@ -44,6 +44,7 @@
 #define DIAG_LAUNCHPAD_HUD "22"
 //for antag huds. these are used at the /mob level
 #define ANTAG_HUD		"23"
+#define BLUE_HUD_TEXT	"24"
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
@@ -78,6 +79,7 @@
 #define ANTAG_HUD_BROTHER		23
 #define ANTAG_HUD_OBSESSED	24
 #define ANTAG_HUD_FUGITIVE	25
+#define BLUE_HUD_GLOBAL			26
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

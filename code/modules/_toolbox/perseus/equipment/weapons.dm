@@ -54,6 +54,7 @@
 	name = "five-seven"
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "fiveseven"
+	w_class = WEIGHT_CLASS_NORMAL
 //	fire_sound = 'sound/weapons/gunshot.ogg'
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	mag_type = /obj/item/ammo_box/magazine/fiveseven
@@ -65,9 +66,9 @@
 		return
 
 	examine()
-		..()
+		. = ..()
 		if(emagged)
-			to_chat(usr, "\blue It's locking mechanism looks fried.")
+			. += "\blue It's locking mechanism looks fried."
 
 	attackby(var/obj/item/I, var/mob/living/M)
 		if(istype(I, /obj/item/card/emag) && !emagged  && istype(pin,/obj/item/firing_pin/implant/perseus))
@@ -98,7 +99,7 @@
 	icon_state = "sknife"
 	item_state = "sknife"
 	force = 0 //We start in stun move, force 0.
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	flags_1 = CONDUCT_1
 	throw_speed = 3
@@ -148,14 +149,14 @@
 		update_icon()
 
 	examine()
-		..()
+		. = ..()
 		if(power_supply && SKNIFE_RECHARGES)
 			var/remaining = power_supply.charge
 			if(power_supply.charge < charge_cost)
 				remaining = 0
-			to_chat(usr,"<font color='blue'>Energy level is at [round(remaining/power_supply.maxcharge*100,1)]%.</font>")
+			. += "<font color='blue'>Energy level is at [round(remaining/power_supply.maxcharge*100,1)]%.</font>"
 		if(emagged)
-			to_chat(usr,"<font color='red'>It looks damaged.</font>")
+			. += "<font color='red'>It looks damaged.</font>"
 
 	attack(var/mob/living/M, var/mob/living/user)
 		if(locked && !emagged)
