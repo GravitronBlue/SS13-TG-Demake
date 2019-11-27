@@ -164,10 +164,9 @@
 /obj/item/clothing/under/perseus_fatigues
 	name = "Commander's Fatigues"
 	desc = "Casual clothing for a commanding officer."
-	icon_state = "persjumpsuit"
+	icon_state = "persfatigues"
 	icon = 'icons/oldschool/perseus.dmi'
 	mob_overlay_icon = 'icons/oldschool/perseus_worn.dmi'
-	item_state = "persfatigues"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 
