@@ -11,14 +11,14 @@
 	if(IsAdminGhost(M))
 		//Access can't stop the abuse
 		return TRUE
-	else if(istype(M,/mob/living/carbon))
-		if(M.mind)
+	if(istype(M,/mob/living/carbon))
+		if(M.mind && istype(M.mind.extra_roles,/list))
 			for(var/datum/extra_role/extra_role in M.mind.extra_roles)
 				if(check_access_list(extra_role.GetAccess()))
 					return TRUE
 	else if(istype(M) && SEND_SIGNAL(M, COMSIG_MOB_ALLOWED, src))
 		return TRUE
-	else if(ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		for(var/obj/item/implant/I in H.implants)
