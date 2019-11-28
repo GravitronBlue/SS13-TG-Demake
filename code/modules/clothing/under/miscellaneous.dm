@@ -40,6 +40,23 @@
 	item_state = "gy_suit"
 	can_adjust = FALSE
 
+/obj/item/clothing/under/space
+	name = "\improper NASA jumpsuit"
+	desc = "It has a NASA logo on it and is made of space-proofed materials."
+	icon_state = "black"
+	item_state = "bl_suit"
+	w_class = WEIGHT_CLASS_BULKY
+	clothing_flags = STOPSPRESSUREDAMAGE
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.02
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection = CHEST | GROIN | LEGS | ARMS //Needs gloves and shoes with cold protection to be fully protected.
+	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
+	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
+	can_adjust = FALSE
+	resistance_flags = NONE
+
 /obj/item/clothing/under/misc/adminsuit
 	name = "administrative cybernetic jumpsuit"
 	icon = 'icons/obj/clothing/under/syndicate.dmi'

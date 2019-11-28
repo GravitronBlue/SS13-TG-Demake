@@ -57,8 +57,8 @@
 	desc = "Standard issue to Perseus Security personnel in space assignments. Maintains a safe internal atmosphere for the user."
 	clothing_flags = STOPSPRESSUREDAMAGE
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	w_class = 3
-	has_sensor = 0
+	w_class = WEIGHT_CLASS_NORMAL
+	has_sensor = NO_SENSORS
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 
 /*
