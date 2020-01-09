@@ -390,6 +390,10 @@ GLOBAL_LIST_EMPTY(PDAs)
 		add_fingerprint(U)
 		U.set_machine(src)
 
+		if(cartridge && href_list["custommenu"])
+			return cartridge.customreaction(href_list,usr)
+
+
 		switch(href_list["choice"])
 
 //BASIC FUNCTIONS===================================

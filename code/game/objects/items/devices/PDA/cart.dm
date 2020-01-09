@@ -579,6 +579,10 @@ Code:
 		usr << browse(null, "window=pda")
 		return
 
+	if(href_list["custommenu"])
+
+		return customreaction(href_list,usr)
+
 	switch(href_list["choice"])
 		if("Medical Records")
 			active1 = find_record("id", href_list["target"], GLOB.data_core.general)
