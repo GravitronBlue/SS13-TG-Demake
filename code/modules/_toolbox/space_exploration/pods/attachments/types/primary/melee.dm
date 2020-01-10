@@ -43,7 +43,7 @@
 					else if(damage_type == BURN)
 						L.take_overall_damage(0, damage)
 					to_chat(user,"<span class='warning'>You [damage_predicate] [L].</span>")
-					add_logs(user, L, damage_predicate, 1, src, " with a space pod ([attached_to]) ([attached_to.type])")
+//FIX!!					add_logs(user, L, damage_predicate, 1, src, " with a space pod ([attached_to]) ([attached_to.type])")
 					additions[turfs.Find(T)] = "harmed [key_name(L)] (damage: [damage], damage type: [damage_type])"
 					needs_logging = 1
 

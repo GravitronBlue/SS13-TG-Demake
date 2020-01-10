@@ -16,7 +16,7 @@
 	var/obj/item/stock_parts/cell/power_source
 	var/inertial_direction = NORTH
 	var/turn_direction = NORTH
-	var/last_move_time = 0
+//	var/last_move_time = 0
 	var/move_cooldown = 2
 	var/enter_delay = 10
 	var/exit_delay = 10
@@ -336,7 +336,7 @@
 					to_chat(user,"<span class='notice'>You install \the [I] into \the [src].</span>")
 			return 0
 
-		if(istype(I, /obj/item/device/multitool))
+		if(istype(I, /obj/item/multitool))
 			if(CanOpenPod(user))
 				OpenHUD(user)
 
@@ -421,7 +421,7 @@
 		if(I.force)
 			to_chat(user,"<span class='attack'>You hit \the [src] with the [I].</span>")
 			TakeDamage(I.force, 0, I, user)
-			add_logs(user, (pilot ? pilot : 0), "attacked a space pod", 1, I, " (REMHP: [health])")
+//FIX!!			add_logs(user, (pilot ? pilot : 0), "attacked a space pod", 1, I, " (REMHP: [health])")
 			user.changeNext_move(8)
 
 		update_icon()
@@ -492,11 +492,13 @@
 					attachment.Use(A, M)
 
 		M.changeNext_move(3)
+/*//FIX!!
 	CollidedWith(var/atom/movable/AM)
 		if(istype(AM, /obj/effect/particle_effect/water))
 			if(HasDamageFlag(P_DAMAGE_FIRE))
 				RemoveDamageFlag(P_DAMAGE_FIRE)
 				PrintSystemNotice("Fire extinguished.")
+*/
 		..()
 
 	CtrlShiftClick(var/mob/user)

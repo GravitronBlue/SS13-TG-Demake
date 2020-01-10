@@ -517,7 +517,7 @@ update_label()
 	name = "\improper CentCom ID"
 	id_type_name = "\improper CentCom ID"
 	desc = "An ERT ID card."
-	icon_state = "ert_commander"
+	icon_state = "centcom"
 	registered_name = "Emergency Response Team Commander"
 	assignment = "Emergency Response Team Commander"
 	uses_overlays = FALSE
@@ -529,7 +529,7 @@ update_label()
 /obj/item/card/id/ert/Security
 	registered_name = "Security Response Officer"
 	assignment = "Security Response Officer"
-	icon_state = "ert_security"
+	icon_state = "centcom"
 
 /obj/item/card/id/ert/Security/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
@@ -538,7 +538,7 @@ update_label()
 /obj/item/card/id/ert/Engineer
 	registered_name = "Engineer Response Officer"
 	assignment = "Engineer Response Officer"
-	icon_state = "ert_engineer"
+	icon_state = "centcom"
 
 /obj/item/card/id/ert/Engineer/Initialize()
 	access = get_all_accesses()+get_ert_access("eng")-ACCESS_CHANGE_IDS
@@ -547,7 +547,7 @@ update_label()
 /obj/item/card/id/ert/Medical
 	registered_name = "Medical Response Officer"
 	assignment = "Medical Response Officer"
-	icon_state = "ert_medic"
+	icon_state = "centcom"
 
 /obj/item/card/id/ert/Medical/Initialize()
 	access = get_all_accesses()+get_ert_access("med")-ACCESS_CHANGE_IDS
@@ -556,7 +556,7 @@ update_label()
 /obj/item/card/id/ert/chaplain
 	registered_name = "Religious Response Officer"
 	assignment = "Religious Response Officer"
-	icon_state = "ert_chaplain"
+	icon_state = "centcomn"
 
 /obj/item/card/id/ert/chaplain/Initialize()
 	access = get_all_accesses()+get_ert_access("sec")-ACCESS_CHANGE_IDS
@@ -565,7 +565,7 @@ update_label()
 /obj/item/card/id/ert/Janitor
 	registered_name = "Janitorial Response Officer"
 	assignment = "Janitorial Response Officer"
-	icon_state = "ert_janitor"
+	icon_state = "centcom"
 
 /obj/item/card/id/ert/Janitor/Initialize()
 	access = get_all_accesses()
@@ -576,7 +576,7 @@ update_label()
 	id_type_name = "prisoner ID card"
 	desc = "You are a number, you are not a free man."
 	icon_state = "orange"
-	item_state = "orange-id"
+	item_state = "orange"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 	assignment = "Prisoner"
@@ -591,37 +591,37 @@ update_label()
 /obj/item/card/id/prisoner/one
 	name = "Prisoner #13-001"
 	registered_name = "Prisoner #13-001"
-	icon_state = "prisoner_001"
+	icon_state = "orange"
 
 /obj/item/card/id/prisoner/two
 	name = "Prisoner #13-002"
 	registered_name = "Prisoner #13-002"
-	icon_state = "prisoner_002"
+	icon_state = "orange"
 
 /obj/item/card/id/prisoner/three
 	name = "Prisoner #13-003"
 	registered_name = "Prisoner #13-003"
-	icon_state = "prisoner_003"
+	icon_state = "orange"
 
 /obj/item/card/id/prisoner/four
 	name = "Prisoner #13-004"
 	registered_name = "Prisoner #13-004"
-	icon_state = "prisoner_004"
+	icon_state = "orange"
 
 /obj/item/card/id/prisoner/five
 	name = "Prisoner #13-005"
 	registered_name = "Prisoner #13-005"
-	icon_state = "prisoner_005"
+	icon_state = "orange"
 
 /obj/item/card/id/prisoner/six
 	name = "Prisoner #13-006"
 	registered_name = "Prisoner #13-006"
-	icon_state = "prisoner_006"
+	icon_state = "orange"
 
 /obj/item/card/id/prisoner/seven
 	name = "Prisoner #13-007"
 	registered_name = "Prisoner #13-007"
-	icon_state = "prisoner_007"
+	icon_state = "orange"
 
 /obj/item/card/id/mining
 	name = "mining ID"

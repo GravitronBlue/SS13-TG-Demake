@@ -8,7 +8,7 @@
 	description = "Basic Space Pod parts."
 	prereq_ids = list("base")
 	design_ids = list("ptaser","pdisabler","pdrill","pengineplasma","pengineuranium","penginewood","pcargolittle","pcargoindustrial","pcleftframe","pcrightframe","pccircuits","pccontrol","pccovers","pcarmorlight","porecollector","pgps")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/podscombat
@@ -17,7 +17,7 @@
 	description = "Basic Space Pod weaponry."
 	prereq_ids = list("base","weaponry")
 	design_ids = list("plaser","pphaser","p45r","p45ammo","p9mmr","p9mmammo")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/podsstandard
@@ -26,7 +26,7 @@
 	description = "Basic Space Pod parts."
 	prereq_ids = list("podsbasic","datatheory","engineering","emp_basic")
 	design_ids = list("pplasmaforcefield","pneutronshield","pcargomedium","pcarmorgold","pautoloader","plifeformsensor","pplasmacutter")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/podsadvanced
@@ -35,7 +35,7 @@
 	description = "High end Space Pod parts."
 	prereq_ids = list("podsstandard","podscombat","adv_engi","adv_plasma")
 	design_ids = list("phiggsbosonshield","pengineplasmaadvanced","pengineuraniumadvanced","penginewoodadvanced","pcargolarge","pcarmorheavy","pcarmorindustrial","psmokescreen")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/podscombatadvanced
@@ -44,7 +44,7 @@
 	description = "High end Space Pod Weaponry."
 	prereq_ids = list("podsadvanced","adv_weaponry")
 	design_ids = list("pxraylaser","pheavylaser","p10mmr","p10mmammo","pgimbal")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /*
@@ -57,7 +57,7 @@
 	description = "Powerful laser designed for a Space Pod."
 	prereq_ids = list("podscombatadvanced")
 	design_ids = list("pdeathlaser")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/p_r75
@@ -66,7 +66,7 @@
 	description = "High end Space Pod Projectiles."
 	prereq_ids = list("podscombatadvanced")
 	design_ids = list("p75mmr","p75ammo")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/p_disruptor
@@ -75,7 +75,7 @@
 	description = "High end Space Pod Energy Weapon."
 	prereq_ids = list("podscombatadvanced")
 	design_ids = list("pdisruptor")
-	research_cost = 3000
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 3000)
 	export_price = 6000
 
 //shields
@@ -85,7 +85,7 @@
 	description = "Powerful high end Force field for the Space Pod."
 	prereq_ids = list("podscombatadvanced")
 	design_ids = list("pantimattershield")
-	research_cost = 2500
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 //armor
@@ -95,7 +95,7 @@
 	description = "Advanced Space Pod Armor"
 	prereq_ids = list("podscombatadvanced")
 	design_ids = list("pantimattershield","pcarmorprecursor")
-	research_cost = 5000
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 7500
 
 /*

@@ -86,7 +86,7 @@
 
 	smoke_screen/
 		name = "smoke synthesizer"
-		use_sound = 'sound/weapons/grenadelaunch.ogg'
+		use_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 		power_usage = 1000
 		cooldown = 1200
 		//origin_tech = "engineering=2;materials=2"

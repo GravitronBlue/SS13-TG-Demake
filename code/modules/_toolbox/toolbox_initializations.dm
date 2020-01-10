@@ -16,16 +16,15 @@ var/global/debug_check_count = 1
 	debug_check_count++*/
 
 proc/Initialize_Falaskians_Shit()
-/*
-	initialize_discord_channel_list()
-*/
+
+//	initialize_discord_channel_list()
 	save_perseus_manager_whitelist()
-/*
-	SaveStation()
+//	SaveStation()
 	load_chaos_assistant_chance()
+
 	GLOB.reinforced_glass_recipes += new/datum/stack_recipe("reinforced delivery window", /obj/structure/window/reinforced/fulltile/delivery/unanchored, 5, time = 0, on_floor = TRUE, window_checks = TRUE)
-	GLOB.cable_coil_recipes += new/datum/stack_recipe("noose", /obj/structure/chair/noose, 10, time = 0, on_floor = TRUE)
-*/
+//	GLOB.cable_coil_recipes += new/datum/stack_recipe("noose", /obj/structure/chair/noose, 10, time = 0, on_floor = TRUE)
+
 	new_player_cam = new()
 /*
 /datum/config_entry/string/discordurl

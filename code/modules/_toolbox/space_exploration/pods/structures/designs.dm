@@ -1,4 +1,4 @@
-#define PODFAB		256
+#define PODFAB  (1<<9)
 
 /datum/design
 
@@ -178,7 +178,7 @@
 		//req_tech = list("combat" = 4, "materials" = 4, "engineering" = 4)
 		category = list("Ammunition")
 		build_type = PODFAB
-		build_path = /obj/item/projectile/bullet/srmrocket
+		build_path = /obj/item/projectile/bullet/a84mm_he
 		materials = list(MAT_METAL = 40000, MAT_URANIUM = 4000,MAT_PLASMA = 8000)
 		construction_time = 20
 

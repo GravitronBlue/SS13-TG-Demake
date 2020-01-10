@@ -99,7 +99,7 @@
 		power_usage = 0 // Uses ammo.
 		projectile = 0
 		overlay_icon_state = "pod_weapon_gun"
-		use_sound = 'sound/weapons/Gunshot.ogg'
+		use_sound = 'sound/weapons/gun/l6/shot.ogg'
 
 		Use(var/atom/target, var/mob/user, var/flags = 0)
 			if(!..(target, user, flags))
@@ -170,13 +170,13 @@
 
 	missile/
 		name = "missile rack"
-		use_sound = 'sound/weapons/grenadelaunch.ogg'
+		use_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 		overlay_icon_state = "pod_weapon_bfg"
 		projectile = 0
 		cooldown = 20
 		construction_cost = list("metal" = 4000, "uranium" = 4000, "plasma" = 4000, "silver" = 4000)
 		//origin_tech = "combat=4;materials=4;engineering=4"
-		var/missile_type = /obj/item/projectile/bullet/srmrocket
+		var/missile_type = /obj/item/projectile/bullet/a84mm_he
 		var/missile_amount = 0
 		var/max_missile_amount = 8
 		var/speed = 3
@@ -191,7 +191,7 @@
 				return 0
 
 			var/list/directional_turfs = attached_to.GetDirectionalTurfs(get_dir(get_turf(src), get_turf(target)))
-			var/obj/item/projectile/bullet/srmrocket/M = new missile_type(pick(directional_turfs))
+			var/obj/item/projectile/bullet/a84mm_he/M = new missile_type(pick(directional_turfs))
 			//M.primed = 1
 			message_admins("[key_name(user)](<a href='?_src_=holder;adminmoreinfo=\ref[user]'>?</a>) fired \a [M] to {[target.x], [target.y], [target.z]} (<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)")
 			log_game("[key_name(user)] fired \a [M] to {[target.x], [target.y], [target.z]}")

@@ -3,31 +3,31 @@
 	icon = 'icons/oldschool/spacepods/pod_attachments.dmi'
 	icon_state = "attachment_default"
 	foldable = /obj/item/pod_construction_part/parts/frames/left
-	can_hold = list()
+//	can_hold = list()
 	var/list/construction_cost = list("metal" = 2000)
 	var/construction_time = 100
-
+/*
 	show_to()
 		return 0
 
 	handle_item_insertion()
 		return 0
-
+*/
 /obj/item/storage/box/pod_frame_right
 	name = "right pod frame box"
 	icon = 'icons/oldschool/spacepods/pod_attachments.dmi'
 	icon_state = "attachment_default"
 	foldable = /obj/item/pod_construction_part/parts/frames/right
-	can_hold = list()
+//	can_hold = list()
 	var/list/construction_cost = list("metal" = 2000)
 	var/construction_time = 100
-
+/*
 	show_to()
 		return 0
 
 	handle_item_insertion()
 		return 0
-
+*/
 // NOTE(drache): Redo this. Such a mess.
 /obj/item/pod_construction_part
 	name = "pod construction part"
@@ -167,7 +167,7 @@
 					if(P_CS_ACTION_SCREW)
 						required_tool = /obj/item/screwdriver
 					if(P_CS_ACTION_MULTI)
-						required_tool = /obj/item/device/multitool
+						required_tool = /obj/item/multitool
 				if(istype(I, required_tool))
 					CSRemoveFlag(requires_tool)
 					if(requires_tool == P_CS_ACTION_MULTI)
@@ -300,7 +300,7 @@
 			bound_height = 64
 			w_class = INFINITY
 			//origin_tech = "materials=1"
-			flags_1 = ABSTRACT_1
+			item_flags = ABSTRACT
 
 			attackby(var/obj/item/I, var/mob/living/user)
 				if(istype(I, /obj/item/weldingtool))
