@@ -12,7 +12,7 @@
 	desc = "This precious limited edition zippo is an award only issued to the longest serving and most meritorious of Enforcers."
 	icon_state = "p_zippo"
 	icon = 'icons/oldschool/perseus.dmi'
-	item_state = "zippo"
+//	item_state = "zippo"
 
 /*
 * Bobblehead
@@ -33,7 +33,7 @@
 	desc = "A pack of Perc Brand Cigarettes. Sponsored by Perseus, the merc team that always smokes Perc. Now with 20% more nicotine."
 	icon = 'icons/oldschool/perseus.dmi'
 	icon_state = "pcigpacket"
-	item_state = "pcigpacket"
+//	item_state = "pcigpacket"
 
 /obj/item/storage/fancy/cigarettes/perc/ComponentInitialize()
 	. = ..()
