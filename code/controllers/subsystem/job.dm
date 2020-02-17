@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(job)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all jobs
+	var/list/whitelisted_occupations = list()
 	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types
 	var/list/unassigned = list()		//Players who need jobs
@@ -335,6 +336,9 @@ SUBSYSTEM_DEF(job)
 					JobDebug("DO incompatible with antagonist role, Player: [player], Job:[job.title]")
 					continue
 
+				if(job.whitelisted && !job.is_whitelisted(player.client))
+					continue
+
 				// If the player wants that job on this level, then try give it to him.
 				if(player.client.prefs.job_preferences[job.title] == level)
 					// If the job isn't filled
@@ -415,7 +419,7 @@ SUBSYSTEM_DEF(job)
 	H.job = rank
 
 	SEND_SIGNAL(H, COMSIG_JOB_RECEIVED, H.job)
-		
+
 
 	//If we joined at roundstart we should be positioned at our workstation
 	if(!joined_late)

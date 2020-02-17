@@ -724,10 +724,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 		var/datum/job/lastJob
 
+		var/list/alljobs = list()
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+			alljobs += job
 
+		//for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+		var/onwhitelist = 0
+		for(var/datum/job/job in alljobs)
+			if(job.whitelisted)
+				if(!job.is_whitelisted(user.client))
+					continue
+				else if(onwhitelist < 1)
+					onwhitelist = 1
 			index += 1
-			if((index >= limit) || (job.title in splitJobs))
+			if((index >= limit) || (job.title in splitJobs) || (onwhitelist == 1))
+				if(onwhitelist == 1)
+					onwhitelist = 2
 				width += widthPerColumn
 				if((index < limit) && (lastJob != null))
 					//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with

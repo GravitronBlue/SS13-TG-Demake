@@ -366,6 +366,9 @@ SUBSYSTEM_DEF(ticker)
 		var/mob/dead/new_player/N = i
 		var/mob/living/carbon/human/player = N.new_character
 		if(istype(player) && player.mind && player.mind.assigned_role)
+			var/datum/job/job = SSjob.GetJob(player.mind.assigned_role)
+			if(job && !job.is_whitelisted(N.client))
+				player.mind.assigned_role = "Assistant"
 			if(player.mind.assigned_role == "Captain")
 				captainless=0
 			if(player.mind.assigned_role != player.mind.special_role)
