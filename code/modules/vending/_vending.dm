@@ -616,6 +616,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 			to_chat(usr, "<span class='warning'>The vending machine cannot dispense products while its service panel is open!</span>")
 			return
 
+		if((!allowed(usr)) && !(obj_flags & EMAGGED) && scan_id)	//For SECURE VENDING MACHINES YEAH
+			to_chat(usr, "<span class='warning'>Access denied.</span>"	)
+			flick(icon_deny,src)
+			return
+
 		vend_ready = 0 //One thing at a time!!
 
 		var/datum/data/vending_product/R = locate(href_list["vend"])
@@ -645,7 +650,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(onstation && ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/card/id/C = H.get_idcard(TRUE)
-
 			if(!C)
 				say("No card found.")
 				flick(icon_deny,src)
