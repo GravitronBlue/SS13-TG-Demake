@@ -39,6 +39,8 @@
 
 	check_cremation()
 
+	handle_extra_roles() //handing extra_roles created by falaskian
+
 	//Updates the number of stored chemicals for powers
 	handle_changeling()
 
