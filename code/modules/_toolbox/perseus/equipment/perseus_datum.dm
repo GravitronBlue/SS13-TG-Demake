@@ -161,7 +161,7 @@
 			if(!changed)
 				changed = 1
 			A.on_removal()
-/*//! REWRITE REQUIRED
+/*//! Objectives are now stored directly in each antag datum, code below is redundant now.
 	if(istype(affecting.objectives,/list) && affecting.objectives.len)
 		for(var/datum/objective/O in affecting.objectives)
 			if(!changed)

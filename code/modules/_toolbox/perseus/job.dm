@@ -20,7 +20,7 @@
 	whitelisted = 1
 	override_station_procedures = 1
 	antagonist_immune = 1
-
+	display_order = null
 
 /obj/effect/landmark/start/penforcer
 	name = "Perseus Security Enforcer"
@@ -35,7 +35,7 @@
 		var/whitelistvalue = is_pwhitelisted(C.ckey)
 		if(text2num(copytext(whitelistvalue,1,2)))
 			return 1
-	return 0
+	return 1 //!!G Remember to revert to zero later once demake is ready.
 
 /datum/job/perseus_commander
 	title = "Perseus Security Commander"
@@ -54,6 +54,7 @@
 	whitelisted = 1
 	override_station_procedures = 1
 	antagonist_immune = 1
+	display_order = null
 
 /obj/effect/landmark/start/pcommander
 	name = "Perseus Security Commander"

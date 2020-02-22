@@ -63,6 +63,9 @@ SUBSYSTEM_DEF(job)
 		name_occupations[job.title] = job
 		type_occupations[J] = job
 
+		if(job.whitelisted)
+			whitelisted_occupations += job
+
 	return 1
 
 

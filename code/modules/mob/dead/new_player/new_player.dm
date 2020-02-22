@@ -457,6 +457,8 @@
 	dat += "<div class='jobs'><div class='jobsColumn'>"
 	var/job_count = 0
 	for(var/datum/job/job in SSjob.occupations)
+		if(job.whitelisted)
+			continue
 		if(job && IsJobUnavailable(job.title, TRUE) == JOB_AVAILABLE)
 			job_count++;
 			if (job_count > round(available_job_count / 2))
@@ -472,6 +474,27 @@
 			dat += "<a class='otherPosition' href='byond://?src=[REF(src)];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
 			break
 	dat += "</div></div>"
+
+	//adding whitelisted jobs to viewed list -falaskian
+
+	var/list/whitelisted_for = list()
+	for(var/datum/job/job in SSjob.whitelisted_occupations)
+		if(!job.is_whitelisted(client))
+			continue
+		if(job && IsJobUnavailable(job.title, TRUE) == JOB_AVAILABLE)
+			whitelisted_for += job
+	if(whitelisted_for.len)
+		dat += "<div class='clearBoth'>Special Jobs:</div><br>"
+		dat += "<div class='jobs'><div class='jobsColumn'>"
+		for(var/datum/job/job in whitelisted_for)
+			job_count++;
+			if (job_count > round(available_job_count / 2))
+				dat += "</div><div class='jobsColumn'>"
+			var/position_class = "otherPosition"
+			if (job.title in GLOB.command_positions)
+				position_class = "commandPosition"
+			dat += "<a class='[position_class]' href='byond://?src=[REF(src)];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
+		dat += "</div></div>"
 
 	// Removing the old window method but leaving it here for reference
 	//src << browse(dat, "window=latechoices;size=300x640;can_close=1")
