@@ -170,7 +170,6 @@
 /var/global/Mycenae_In_Space = 0
 
 /proc/Create_Mycenae()
-	perseusAlert("PercTech Testing System","Debug test 1",1)
 	if(Mycenae_In_Space)
 		return 1
 	var/list/z_levels = SSmapping.levels_by_trait(ZTRAIT_SPACE_RUINS)
