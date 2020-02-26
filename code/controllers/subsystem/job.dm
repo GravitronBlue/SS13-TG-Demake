@@ -420,6 +420,9 @@ SUBSYSTEM_DEF(job)
 	var/datum/job/job = GetJob(rank)
 
 	H.job = rank
+	if(!job.pre_setup(M,joined_late))
+		message_admins("job \"[rank]\" for player \"[M.key]\" failed pre_setup. They have been spawned as an assistant.")
+		return EquipRank(M, "Assistant", joined_late)
 
 	SEND_SIGNAL(H, COMSIG_JOB_RECEIVED, H.job)
 

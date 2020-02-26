@@ -338,6 +338,12 @@
 		alert(src, get_job_unavailable_error_message(error, rank))
 		return FALSE
 
+/* //!!G Uncomment later
+	if(!job && job.is_whitelisted(client))
+		message_admins("An illegal attempt to access job \"[rank]\" has been made by [key].")
+		log_game("An illegal attempt to access job \"[rank]\" has been made by [key].")
+		return FALSE
+*/
 	if(SSticker.late_join_disabled)
 		alert(src, "An administrator has disabled late join spawning.")
 		return FALSE
@@ -371,7 +377,7 @@
 		if(!arrivals_docked)
 			var/obj/screen/splash/Spl = new(character.client, TRUE)
 			Spl.Fade(TRUE)
-			character.playsound_local(get_turf(character), 'sound/voice/ApproachingTG.ogg', 25)
+			character.playsound_local(get_turf(character), 'sound/toolbox/NATS.ogg', 25)
 
 		character.update_parallax_teleport()
 
@@ -381,7 +387,7 @@
 	if(ishuman(character))
 		humanc = character	//Let's retypecast the var to be human,
 
-	if(humanc)	//These procs all expect humans
+	if(humanc && !job.override_station_procedures)	//These procs all expect humans
 		GLOB.data_core.manifest_inject(humanc)
 		if(SSshuttle.arrivals)
 			SSshuttle.arrivals.QueueAnnounce(humanc, rank)
@@ -401,7 +407,7 @@
 
 	GLOB.joined_player_list += character.ckey
 
-	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc)	//Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
+	if(CONFIG_GET(flag/allow_latejoin_antagonists) && humanc && !job.antagonist_immune)	//Borgs aren't allowed to be antags. Will need to be tweaked if we get true latejoin ais.
 		if(SSshuttle.emergency)
 			switch(SSshuttle.emergency.mode)
 				if(SHUTTLE_RECALL, SHUTTLE_IDLE)
@@ -467,6 +473,7 @@
 			if (job.title in GLOB.command_positions)
 				position_class = "commandPosition"
 			dat += "<a class='[position_class]' href='byond://?src=[REF(src)];SelectedJob=[job.title]'>[job.title] ([job.current_positions])</a><br>"
+
 	if(!job_count) //if there's nowhere to go, overflow opens up.
 		for(var/datum/job/job in SSjob.occupations)
 			if(job.title != SSjob.overflow_role)

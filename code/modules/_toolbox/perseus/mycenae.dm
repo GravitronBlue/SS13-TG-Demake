@@ -9,7 +9,7 @@
 //!!	circuitry_removable = 0
 	PopulateContents()
 		..()
-		new /obj/item/clothing/shoes/combat(src)
+		new /obj/item/clothing/shoes/perseus(src)
 		new /obj/item/clothing/suit/armor/lightarmor(src)
 		new /obj/item/clothing/head/helmet/space/pershelmet(src)
 		new /obj/item/clothing/mask/gas/perseus_voice(src)
@@ -39,7 +39,7 @@
 		new /obj/item/clothing/suit/wintercoat/perseus(src)
 		new /obj/item/reagent_containers/food/drinks/bottle/whiskey(src)
 		new /obj/item/clothing/head/helmet/space/persberet(src)
-		new /obj/item/clothing/shoes/combat(src)
+		new /obj/item/clothing/shoes/perseus(src)
 		new /obj/item/clothing/under/space/skinsuit(src)
 		new /obj/item/clothing/suit/armor/lightarmor(src)
 		new /obj/item/clothing/mask/gas/perseus_voice(src)
@@ -168,7 +168,9 @@
 	prefix = "_maps/toolbox/Mycenae3.dmm"
 
 /var/global/Mycenae_In_Space = 0
+
 /proc/Create_Mycenae()
+	perseusAlert("PercTech Testing System","Debug test 1",1)
 	if(Mycenae_In_Space)
 		return 1
 	var/list/z_levels = SSmapping.levels_by_trait(ZTRAIT_SPACE_RUINS)

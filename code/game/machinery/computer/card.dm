@@ -186,7 +186,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		<td style='width:25%'><b>Open job</b></td><td style='width:25%'><b>Close job</b><td style='width:25%'><b>Prioritize</b></td></td></tr>"}
 		for(var/datum/job/job in SSjob.occupations)
 			dat += "<tr>"
-			if(job.title in blacklisted)
+			if((job.title in blacklisted) || job.override_station_procedures)
 				continue
 			dat += {"<td>[job.title]</td>
 				<td>[job.current_positions]/[job.total_positions]</td>
